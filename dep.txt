@@ -23,7 +23,6 @@ Markdown==3.3.3
 MarkupSafe==1.1.1
 PyHive==0.6.3
 PyJWT==1.7.1
-PyNaCl==1.4.0
 PySmbClient==0.1.5
 PyYAML==5.4.1
 Pygments==2.7.4
@@ -184,7 +183,6 @@ graphviz==0.16
 greenlet==1.0.0
 grpc-google-iam-v1==0.12.3
 grpcio-gcp==0.2.2
-grpcio==1.35.0
 gunicorn==19.10.0
 hdfs==2.5.8
 hmsclient==0.1.1
