@@ -1,0 +1,5 @@
+tests/dags/example_dag.py
+tests/dags/proxy_accu.py
+tests/dags/selenium_dag.py
+tests/dags/ayto_dag.py
+tests/dags/accu_dag.py
