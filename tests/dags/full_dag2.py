@@ -25,7 +25,7 @@ import traceback
 import time
 import pickle
 import wget
-import unicodedata
+# import unicodedata
 from datetime import datetime, timedelta
 from lxml import html
 from selenium import webdriver
@@ -353,8 +353,8 @@ with DAG(dag_id='MadridDag', description='Accuweather + Pollution Pipelines', st
     s3.Bucket(bucket_name).Object(path_file).download_fileobj(buffer)
 
     accuStations = pd.read_parquet(buffer)
-    accuStations['ESTACION_STR'] = accuStations['ESTACION_STR'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
-    accuStations['MET_STATION'] = accuStations['MET_STATION'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
+    # accuStations['ESTACION_STR'] = accuStations['ESTACION_STR'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
+    # accuStations['MET_STATION'] = accuStations['MET_STATION'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
     headers = pickle.loads(s3.Bucket(bucket_name).Object("txtHeaders.pkl").get()['Body'].read())
     accu = accuStations.rename({'CODIGO_CORTO': 'ESTACION'}, axis=1)
     resDF = pd.DataFrame()
@@ -419,8 +419,8 @@ def fetchAccuData():
 
         accuStations = pd.read_parquet(buffer)
         accu = accuStations.rename({'CODIGO_CORTO': 'ESTACION'}, axis=1)
-        accuStations['ESTACION_STR'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
-        accuStations['MET_STATION'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
+        # accuStations['ESTACION_STR'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
+        # accuStations['MET_STATION'].apply(lambda x: unicodedata.normalize('NFKD', x).encode('ASCII', 'ignore').decode().replace(' ','_').replace('.',''))
 
         resDF = pd.DataFrame()
         for index, row in accu.iterrows():
