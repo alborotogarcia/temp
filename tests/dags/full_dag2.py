@@ -362,10 +362,15 @@ with DAG(dag_id='MadridDag', description='Accuweather + Pollution Pipelines', st
     with TaskGroup("section_accu", tooltip="Accu Tasks") as section_accu:
         for index, row in accu.iterrows():
             tid = 'AccuStation_' + f"{accu.iloc[index]['ESTACION_STR']}"
-            task1 = SeleniumOperator(
-                    script = indexAccuStations,
-                    script_args = [accu.iloc[index],local_downloads],
-                    task_id = tid)
+            task1 = PythonOperator(
+                    python_callable = indexAccuStations,
+                    op_args = [accu.iloc[index],local_downloads],
+                    task_id = tid
+                    )
+            #task1 = SeleniumOperator(
+            #        script = indexAccuStations,
+            #        script_args = [accu.iloc[index],local_downloads],
+            #        task_id = tid)
 
     some_other_task = DummyOperator(task_id="some-other-task")
 
