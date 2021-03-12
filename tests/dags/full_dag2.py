@@ -2,7 +2,7 @@ from airflow.decorators import dag, task
 from airflow.models import DAG
 from airflow.utils.dates import days_ago
 from airflow.utils.task_group import TaskGroup
-from plugins.selenium_plugin import SeleniumOperator
+# from plugins.selenium_plugin import SeleniumOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.python_operator import BranchPythonOperator
