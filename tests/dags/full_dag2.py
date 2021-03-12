@@ -296,7 +296,7 @@ def insertToPostgres(tablename='sensordata'):
     newData = pd.read_parquet('/usr/local/airflow/downloads/full.parquet')
     newData.columns = newData.columns.str.lower()
     tablename = tablename.lower()
-    eng = create_engine('postgresql://airflow:airflow@postgres:5432/airflow')
+    eng = create_engine('postgresql://airflow:airflow@airflow-postgresql:5432/airflow')
     with eng.connect() as conn:
         # conn.execute(text(f"DROP TABLE IF EXISTS {tablename};"))
         conn.execute(text("DROP TABLE IF EXISTS temp_table;"))
@@ -345,7 +345,7 @@ with DAG(dag_id='MadridDag', description='Accuweather + Pollution Pipelines', st
     bucket_name = 'accuayto'
     path_file = 'aytoMetClust.parquet'
     s3 = boto3.resource('s3',
-        endpoint_url='http://minio:9000',
+        endpoint_url='http://airflow-minio:9000',
         config=boto3.session.Config(signature_version='s3v4'),aws_access_key_id='alboroto',
         aws_secret_access_key='!Alboroto7'
     )
@@ -403,7 +403,7 @@ def fetchAccuData():
         bucket_name = 'accuayto'
         path_file = 'aytoMetClust.parquet'
         s3 = boto3.resource('s3',
-            endpoint_url='http://minio:9000',
+            endpoint_url='http://airflow-minio:9000',
             config=boto3.session.Config(signature_version='s3v4'),aws_access_key_id='alboroto',
             aws_secret_access_key='!Alboroto7'
         )
