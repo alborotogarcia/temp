@@ -25,6 +25,7 @@ import traceback
 import time
 import pickle
 import wget
+import unicodedata
 from datetime import datetime, timedelta
 from lxml import html
 from selenium import webdriver
