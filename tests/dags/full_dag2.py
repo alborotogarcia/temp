@@ -38,8 +38,8 @@ default_args = {
 
 cwd = os.getcwd()
 sel_downloads = '/opt/airflow/downloads'
-if ~os.path.exists(sel_downloads):
-    os.mkdir(sel_downloads)
+#if ~os.path.exists(sel_downloads):
+#    os.mkdir(sel_downloads)
 local_downloads = '/opt/airflow/seluser/downloads'
 #if ~os.path.exists(local_downloads):
 #    os.mkdir(local_downloads)
